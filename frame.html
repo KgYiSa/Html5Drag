@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="lib/jquery-ui.min.css"/>
+    <script src="lib/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="lib/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/draggable.js" type="text/javascript"></script>
+    <style>
+        .liClass {
+            border: solid #000000;
+            width: 200px;
+            height: 40px;
+        }
+
+        .tab {
+            border: solid blue;
+            min-height: 100px;
+            width:100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+<ul class="tab">
+    <li class="liClass"><label>aaaaaaa</label></li>
+</ul>
+</body>
+<script>
+    $(function(){
+        $(".cpList", parent.document).find("li").each(function() {
+            $(this).on("dragstart", function(ev) {//开始拖拽
+                console.log("拖拽了"+ ev.target.id);
+                var dt = ev.originalEvent.dataTransfer;
+               dt.setData('Text', ev.target.id);//将拖拽组件ID传入
+            });
+        });
+        //拖拽组件
+        Draggable({destId:".tab",dragTag:"li"});
+    })
+</script>
+</html>
